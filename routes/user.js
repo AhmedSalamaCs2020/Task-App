@@ -1,0 +1,89 @@
+const userModel = require('../src/models/user_model');
+
+const express = require('express')
+
+const router = express.Router()
+
+router.post('/users',async (req, res) => {
+
+  const data = userModel(req.body)
+  try {
+    await data.save()
+    res.status(201).send(data)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+}
+
+)
+//
+router.get('/getUsers', async(req, res) => {
+
+try {
+  const data =await userModel.find({})
+  res.status(200).send(data)
+} catch (error) {
+  res.status(400).send(error)
+}
+
+})
+//
+router.get('/users', async(req, res) => {
+
+  const passedID = req.body
+  try {
+const user= await userModel.findById({_id:passedID["id"]})
+  if(!user)
+   return res.status(404).send({"Message":"Invalid User ID"})
+   res.status(200).send(user)
+  } catch (error) {
+    res.status(500).send({"Message":"Invalid User ID"})
+  }
+ 
+})
+//
+router.patch("/users",async (req,res)=>{
+const allowedUpdates = ['name', 'email', 'password', 'age']
+  var updates = Object.keys(req.body)
+  //console.log(updates)
+  const data=req.body;
+  const id=data["id"]
+  updates = updates.filter(function(item) {
+    return item !== "id"
+})
+const isValidOperation = updates.every((update) =>
+allowedUpdates.includes(update)
+)
+if (!isValidOperation) {
+ return res.status(400).send({ error: 'Invalid updates!' })
+}
+  try {
+    const user= await userModel.findById({"_id":id})
+    allowedUpdates.forEach((element)=>user[element]=data[element])
+  await user.save()
+   res.send(user)
+
+  } catch (error) {
+    res.send(error)
+  }
+
+})
+
+router.delete("/user",async(req,res)=>{
+
+try {
+
+  const item=await userModel.deleteOne({_id:req.body["id"]}) 
+  if(item["deletedCount"]==1)
+  res.status(200).send({"message":"Item Deleted"})
+  else{
+    res.status(200).send({"message":"Item Already Deleted"})
+  }
+
+} catch (error) {
+  res.send({"message":"error request"})
+}
+
+})
+
+module.exports = router
