@@ -8,6 +8,7 @@ router.post("/tasks",async(req, res)=>{
 
    try {
       const response =taskModel(req.body)
+      console.log(req.body);
       const data= await response.save() // await == then
       res.status(201).send(data)
    } catch (error) {
@@ -57,6 +58,8 @@ router.patch('/task',async(req,res)=>{
    
     try {
       const task= await taskModel.findById(req.body["id"]);
+      if(!task)
+      return res.status(404).send({ error: 'Invalid Task!' })
      updates.forEach((item)=>{task[item]=req.body[item]})
      res.status(200).send(task);
 

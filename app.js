@@ -12,6 +12,7 @@ require('./src/database/databaseConnection')
 
 //middlewares
 var bodyParser = require('body-parser')
+app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(taskRoute)
 app.use(userRoute)

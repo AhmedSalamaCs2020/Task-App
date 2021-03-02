@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 
 var validator = require("validator");
-
+var bcrypt = require('bcryptjs');
 const schema=mongoose.Schema({
   name:{
       type:String,
@@ -37,6 +37,16 @@ const schema=mongoose.Schema({
         throw new Error('Password cannot contain "password"')
       }
     }
+  }
+
+})
+schema.pre('save',async function(next){
+  // arrow function not binding values
+ console.log("salama");
+  const user =this
+  //console.log(user.isModified("password"));
+  if(user.isModified("password")){
+   user.password =await bcrypt.hash(user.password,8)
   }
 
 })

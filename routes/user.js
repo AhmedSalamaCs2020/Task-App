@@ -59,12 +59,14 @@ if (!isValidOperation) {
 }
   try {
     const user= await userModel.findById({"_id":id})
+     if(!user)
+     return res.status(404).send({ error: 'Invalid User!' })
     allowedUpdates.forEach((element)=>user[element]=data[element])
   await user.save()
    res.send(user)
 
   } catch (error) {
-    res.send(error)
+    res.send({"Message":"Check Your Token"})
   }
 
 })
