@@ -19,7 +19,7 @@
     "@types/node": "^14.14.31"
   },
   "scripts": {
-    "start": "start app.js"
+    "start": "node  app.js"
   },
   "author": "",
   "license": "ISC",
