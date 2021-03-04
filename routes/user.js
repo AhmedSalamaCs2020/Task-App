@@ -97,7 +97,7 @@ router.post('/login',async (req,res)=>{
  const user=await userModel.findByCredentials(email,password);
     res.send(user)
   } catch (error) {
-    res.send({"Message":"Error"})
+    res.send({"Message":"Invalid User"})
   }
 
 
