@@ -19,7 +19,8 @@
     "@types/node": "^14.14.31"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "stop-win": "Taskkill /IM node.exe /F"
   },
   "author": "",
   "license": "ISC",

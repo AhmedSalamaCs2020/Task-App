@@ -19,3 +19,4 @@ app.use(userRoute)
 
 //
 app.listen(port)
+//"nodemon -e * app.js"

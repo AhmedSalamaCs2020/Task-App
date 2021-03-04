@@ -88,4 +88,19 @@ try {
 
 })
 
+///
+router.post('/login',async (req,res)=>{
+  console.log(req.body)
+  const email=req.body["email"]
+  const password=req.body["password"]
+  try {
+ const user=await userModel.findByCredentials(email,password);
+    res.send(user)
+  } catch (error) {
+    res.send({"Message":"Error"})
+  }
+
+
+})
+
 module.exports = router
