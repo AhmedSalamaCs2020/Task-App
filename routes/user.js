@@ -95,7 +95,8 @@ router.post('/login',async (req,res)=>{
   const password=req.body["password"]
   try {
  const user=await userModel.findByCredentials(email,password);
-    res.send(user)
+ const token=await userModel.generateAuthToken();
+    res.send({user,token})
   } catch (error) {
     res.send({"Message":"Invalid User"})
   }

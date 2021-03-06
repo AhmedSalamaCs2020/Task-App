@@ -2,6 +2,8 @@ const mongoose=require('mongoose')
 
 var validator = require("validator");
 var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+
 const schema=mongoose.Schema({
   name:{
       type:String,
@@ -50,8 +52,15 @@ console.log(user);
  throw new Error('Unable to login')
 return user
 }
+schema.statics.generateAuthToken=async function () {
+  const user=this
+  const token=jwt.sign({ _id: user._id},"Ahmed Salama")
+  console.log(token);
+  return token
+}
 
-schema.pre('save',async function(next){
+
+schema.pre('save',async function(next){//used in Create User and update
   // arrow function not binding values
   const user =this
   if(user.isModified("password")){
