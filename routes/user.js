@@ -42,6 +42,14 @@ const user= await userModel.findById({_id:passedID["id"]})
  
 })
 //
+/*{
+  "_id": "603ea4a1490e5d00157beeac",
+  "name": "Ahmed salama",
+  "email": "ahmeds@gmail.com",
+  "password": "$2a$08$NyQ11NQsc8qRVMfyw70gXe3k.fo.fZRJlS0N8lEx5DZe9DqtyfqpO",
+  "age": 27,
+  "__v": 0
+},*/
 router.patch("/users",async (req,res)=>{
 const allowedUpdates = ['name', 'email', 'password', 'age']
   var updates = Object.keys(req.body)
