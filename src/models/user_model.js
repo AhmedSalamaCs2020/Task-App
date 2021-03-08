@@ -1,5 +1,4 @@
 const mongoose=require('mongoose')
-
 var validator = require("validator");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
@@ -53,6 +52,7 @@ console.log(user);
  throw new Error('Unable to login')
 return user
 }
+
 schema.statics.generateAuthToken=async function (userID) {
   const token=jwt.sign({ _id: userID},"Ahmed Salama")
   console.log(userID);

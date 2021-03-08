@@ -6,7 +6,9 @@ const router = express.Router()
 const auth=require('../src/auth/auth')
 //
 router.post('/users',async (req, res) => {
-
+  const userone =await userModel.find({"email":req.body["email"]})
+if(userone.length>0)
+res.send({"message":"Email Is Already Exists"})
   const data = userModel(req.body)
   try {
     await data.save()
