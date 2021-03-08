@@ -9,7 +9,7 @@ router.post('/users',async (req, res) => {
   const data = userModel(req.body)
   try {
     await data.save()
-  const token=  await userModel.generateAuthToken()
+  const token= await userModel.generateAuthToken()// here we generate token by id of user
     
     res.status(201).send({token,data})
   } catch (error) {
