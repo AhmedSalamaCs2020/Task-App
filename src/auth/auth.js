@@ -9,7 +9,7 @@ try {
   if(!validateUser){
       throw new Error()
   }
- // req.user=validateUser
+ req.user=validateUser
   next()
   
 } catch (error) {
