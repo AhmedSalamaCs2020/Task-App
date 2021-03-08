@@ -11,8 +11,8 @@ const schema=mongoose.Schema({
       trim:true,
   },
   email:{
-    unique : true,
     type:String,
+    unique: true,
     required: true,
     trim:true,
     lowercase:true,
