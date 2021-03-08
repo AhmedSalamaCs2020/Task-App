@@ -1,7 +1,7 @@
 const userModel = require('../src/models/user_model');
 
 const express = require('express')
-
+ 
 const router = express.Router()
 //
 router.post('/users',async (req, res) => {
@@ -11,9 +11,10 @@ router.post('/users',async (req, res) => {
     await data.save()
   const token= await userModel.generateAuthToken()// here we generate token by id of user
     
-    res.status(201).send({token,data})
+  //  res.status(201).send({token,data})
+  
   } catch (error) {
-    res.status(400).send(error)
+   // res.status(400).send(error)
   }
 }
 )
