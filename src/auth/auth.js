@@ -5,13 +5,14 @@ try {
     const token=req.header('token')
    const isCorrect= jwt.verify(token,"Ahmed Salama")
   console.log(token);
+  console.log(isCorrect);
   console.log(isCorrect._id);
 
   const validateUser=await user.findOne({"_id":isCorrect._id})
   if(!validateUser){
       throw new Error()
   }
- req.user=validateUser
+ //req.user=validateUser
   next()
   
 } catch (error) {

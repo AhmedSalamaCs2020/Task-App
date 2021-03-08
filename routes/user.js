@@ -10,7 +10,7 @@ router.post('/users',async (req, res) => {
   const data = userModel(req.body)
   try {
     await data.save()
-  const token= await userModel.generateAuthToken()// here we generate token by id of user
+  const token= await userModel.generateAuthToken(data["_id"])// here we generate token by id of user
     
     res.status(201).send({token,data})
   } catch (error) {
@@ -105,7 +105,7 @@ router.post('/login',async (req,res)=>{
   const password=req.body["password"]
   try {
  const user=await userModel.findByCredentials(email,password);
- const token=await userModel.generateAuthToken();
+ const token=await userModel.generateAuthToken(user["_id"]);
     res.send({user,token})
   } catch (error) {
     res.send({"Message":"Invalid User"})
