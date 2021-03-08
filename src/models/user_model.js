@@ -60,7 +60,7 @@ schema.statics.generateAuthToken=async function (userID) {
 
 
 schema.pre('save',async function(next){//used in Create User and update
-  // arrow function not binding values
+  // arrow function not binding values 
   const user =this
   if(user.isModified("password")){
    user.password =await bcrypt.hash(user.password,8)
