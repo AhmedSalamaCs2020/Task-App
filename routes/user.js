@@ -3,6 +3,7 @@ const userModel = require('../src/models/user_model');
 const express = require('express')
  
 const router = express.Router()
+const auth=require('../src/auth/auth')
 //
 router.post('/users',async (req, res) => {
 
@@ -11,15 +12,14 @@ router.post('/users',async (req, res) => {
     await data.save()
   const token= await userModel.generateAuthToken()// here we generate token by id of user
     
-  //  res.status(201).send({token,data})
-  
+    res.status(201).send({token,data})
   } catch (error) {
-   // res.status(400).send(error)
+    res.status(400).send(error)
   }
 }
 )
 //
-router.get('/getUsers', async(req, res) => {
+router.get('/getUsers', auth,async(req, res) => {
 
 try {
   const data =await userModel.find({})
@@ -30,7 +30,7 @@ try {
 
 })
 //
-router.get('/users', async(req, res) => {
+router.get('/users', auth,async(req, res) => {
 
   const passedID = req.body
   try {
@@ -52,7 +52,7 @@ const user= await userModel.findById({_id:passedID["id"]})
   "age": 27,
   "__v": 0
 },*/
-router.patch("/users",async (req,res)=>{
+router.patch("/users",auth,async (req,res)=>{
 const allowedUpdates = ['name', 'email', 'password', 'age']
   var updates = Object.keys(req.body)
   //console.log(updates)
@@ -81,7 +81,7 @@ if (!isValidOperation) {
 
 })
 
-router.delete("/user",async(req,res)=>{
+router.delete("/user",auth,async(req,res)=>{
 
 try {
 
