@@ -59,7 +59,13 @@ schema.statics.generateAuthToken=async function (userID) {
   return token
 }
 
+schema.methods.getPublicProfile=function(){
+const user=this
+var userObject=user.toObject()
+delete userObject.password
 
+return  userObject 
+}
 
 schema.pre('save',async function(next){//used in Create User and update
   // arrow function not binding values 

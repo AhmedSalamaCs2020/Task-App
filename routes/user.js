@@ -102,18 +102,18 @@ try {
 })
 
 ///
-router.post('/login',async (req,res)=>{
+router.post('/login',async function (req,res){
   const email=req.body["email"]
-  const password=req.body["password"]
+  const passwords=req.body["password"]
   try {
- const user=await userModel.findByCredentials(email,password);
+ var user=await userModel.findByCredentials(email,passwords);
  const token=await userModel.generateAuthToken(user["_id"]);
 
- delete user["password"]
- console.log(user);
 
-    res.send({user,token})
+
+    res.send({"user":user.getPublicProfile(),token})
   } catch (error) {
+    console.log(error);
     res.send({"Message":"Invalid User"})
   }
 
