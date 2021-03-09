@@ -32,6 +32,7 @@ const schema=mongoose.Schema({
   password:{
     type:String,
     trim:true,
+    select:false,
     minlength:7,
     required:true,
     validate(value){
