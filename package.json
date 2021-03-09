@@ -19,7 +19,7 @@
     "@types/node": "^14.14.31"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon -e * app.js",
     "stop-win": "Taskkill /IM node.exe /F"
   },
   "author": "",

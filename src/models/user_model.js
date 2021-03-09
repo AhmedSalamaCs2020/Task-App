@@ -44,7 +44,7 @@ const schema=mongoose.Schema({
 })
 schema.statics.findByCredentials=async(email,password)=>{
 const user= await model.findOne({email:email})
-console.log(user);
+//console.log(user);
  if(!user)
  throw new Error('Unable to login')
  const isMatch=await bcrypt.compare(password,user.password)
@@ -55,16 +55,11 @@ return user
 
 schema.statics.generateAuthToken=async function (userID) {
   const token=jwt.sign({ _id: userID},"Ahmed Salama")
-  console.log(userID);
+  //console.log(userID);
   return token
 }
 
-schema.statics.getPublicProfile=function(){
-const user=this
-const userObject=user.toObject()
-delete userObject.password
-return  userObject 
-}
+
 
 schema.pre('save',async function(next){//used in Create User and update
   // arrow function not binding values 

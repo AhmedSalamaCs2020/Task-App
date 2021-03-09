@@ -103,14 +103,16 @@ try {
 
 ///
 router.post('/login',async (req,res)=>{
-  console.log(req.body)
   const email=req.body["email"]
   const password=req.body["password"]
   try {
  const user=await userModel.findByCredentials(email,password);
- const newOne=userModel.getPublicProfile()
  const token=await userModel.generateAuthToken(user["_id"]);
-    res.send({ newOne,token})
+
+ delete user["password"]
+ console.log(user);
+
+    res.send({user,token})
   } catch (error) {
     res.send({"Message":"Invalid User"})
   }

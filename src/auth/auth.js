@@ -4,9 +4,9 @@ const auth=async (req,res,next)=>{
 try {
     const token=req.header('token')
    const isCorrect= jwt.verify(token,"Ahmed Salama")
-  console.log(token);
-  console.log(isCorrect);
-  console.log(isCorrect._id);
+ // console.log(token);
+ // console.log(isCorrect);
+  //console.log(isCorrect._id);
 
   const validateUser=await user.findOne({"_id":isCorrect._id})
   if(!validateUser){
