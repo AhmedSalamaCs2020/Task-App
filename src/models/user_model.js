@@ -2,6 +2,7 @@ const mongoose=require('mongoose')
 var validator = require("validator");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+const { delete } = require('../../routes/user');
 
 const schema=mongoose.Schema({
   name:{
@@ -59,6 +60,12 @@ schema.statics.generateAuthToken=async function (userID) {
   return token
 }
 
+schema.statics.getPublicProfile=function(){
+const user=this
+const userObject=user.toObject()
+delete userObject.password
+return  userObject 
+}
 
 schema.pre('save',async function(next){//used in Create User and update
   // arrow function not binding values 

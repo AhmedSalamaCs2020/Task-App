@@ -18,6 +18,7 @@ res.send({"message":"Email Is Already Exists"})
   } catch (error) {
     res.status(400).send(error)
   }
+
 }
 )
 //
@@ -107,8 +108,9 @@ router.post('/login',async (req,res)=>{
   const password=req.body["password"]
   try {
  const user=await userModel.findByCredentials(email,password);
+
  const token=await userModel.generateAuthToken(user["_id"]);
-    res.send({user,token})
+    res.send({ userModel.getPublicProfile(),token})
   } catch (error) {
     res.send({"Message":"Invalid User"})
   }
