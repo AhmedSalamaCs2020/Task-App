@@ -12,7 +12,7 @@ res.send({"message":"Email Is Already Exists"})
   const data = userModel(req.body)
   try {
     await data.save()
-  const token= await userModel.generateAuthToken(data["_id"])// here we generate token by id of user
+  const token= await userModel.generateAuthToken()// here we generate token by id of user
     
     res.status(201).send({token,data})
   } catch (error) {
@@ -107,7 +107,7 @@ router.post('/login',async function (req,res){
   const passwords=req.body["password"]
   try {
  var user=await userModel.findByCredentials(email,passwords);
- const token=await userModel.generateAuthToken(user["_id"]);
+ const token=await userModel.generateAuthToken();
 
 
 
