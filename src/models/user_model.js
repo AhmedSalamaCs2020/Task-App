@@ -2,7 +2,6 @@ const mongoose=require('mongoose')
 var validator = require("validator");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-const { delete } = require('../../routes/user');
 
 const schema=mongoose.Schema({
   name:{
