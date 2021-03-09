@@ -12,7 +12,7 @@ res.send({"message":"Email Is Already Exists"})
   const data = userModel(req.body)
   try {
     await data.save()
-  const token= await userModel.generateAuthToken()// here we generate token by id of user
+  const token= await data.generateAuthToken()// here we generate token by id of user
     
     res.status(201).send({token,data})
   } catch (error) {
@@ -106,12 +106,12 @@ router.post('/login',async function (req,res){
   const email=req.body["email"]
   const passwords=req.body["password"]
   try {
- var user=await userModel.findByCredentials(email,passwords);
- const token=await userModel.generateAuthToken();
+ var user=await userModel.findByCredentials(email,passwords);//beacuase static method 
+ const token=await user.generateAuthToken();// not static 
 
 
 
-    res.send({"user":user.getPublicProfile(),token})
+    res.send({"user":user.getPublicProfile(),token});// not static 
   } catch (error) {
     console.log(error);
     res.send({"Message":"Invalid User"})

@@ -53,10 +53,10 @@ const user= await model.findOne({email:email})
 return user
 }
 
-schema.methods.generateAuthToken=async function () {
+schema.methods.generateAuthToken= async function () {
   const user=this
   const token=jwt.sign({ _id: user._id},"Ahmed Salama")
-  //console.log(userID);
+
   return token
 }
 
