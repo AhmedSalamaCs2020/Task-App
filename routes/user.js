@@ -108,11 +108,7 @@ router.post('/login',async function (req,res){
   try {
  var user=await userModel.findByCredentials(email,passwords);//beacuase static method 
  const token=await user.generateAuthToken();// not static 
- const userObj=JSON.parse(user) ;
- delete userObj.password;
-
-
-    res.send({"user":userObj,token});// not static 
+    res.send({"user":user.getPublicProfile(),token});// not static 
   } catch (error) {
     console.log(error);
     res.send({"Message":"Invalid User"})
