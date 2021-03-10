@@ -47,24 +47,25 @@ router.patch("/users",auth,async (req,res)=>{
 const allowedUpdates = ['name', 'email', 'password', 'age']
   var updates = Object.keys(req.body)
   //console.log(updates)
-  const data=req.body;
-  const id=data["id"]
-  updates = updates.filter(function(item) {
+  //const data=req.body;
+  //const id=data["id"]
+  /*updates = updates.filter(function(item) {
     return item !== "id"
-})
+})*/
 const isValidOperation = updates.every((update) =>
 allowedUpdates.includes(update)
 )
 if (!isValidOperation) {
  return res.status(400).send({ error: 'Invalid updates!' })
 }
+
   try {
-    const user= await userModel.findById({"_id":id})
+   /* const user= await userModel.findById({"_id":id})
      if(!user)
-     return res.status(404).send({ error: 'Invalid User!' })
-    allowedUpdates.forEach((element)=>user[element]=data[element])
-  await user.save()
-   res.send(user)
+     return res.status(404).send({ error: 'Invalid User!' })*/
+    allowedUpdates.forEach((element)=>req.user[element]=updates[element])
+  await req.user.save()
+   res.send(req.user)
 
   } catch (error) {
     res.send({"Message":"Check Your Token"})
