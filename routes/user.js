@@ -63,7 +63,7 @@ if (!isValidOperation) {
    /* const user= await userModel.findById({"_id":id})
      if(!user)
      return res.status(404).send({ error: 'Invalid User!' })*/
-    allowedUpdates.forEach((element)=>req.user[element]=updates[element])
+    allowedUpdates.forEach((element)=>req.user[element]=req.body[element])
   await req.user.save()
    res.send(req.user)
 
