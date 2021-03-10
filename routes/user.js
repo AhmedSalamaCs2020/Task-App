@@ -6,6 +6,7 @@ const router = express.Router()
 const auth=require('../src/auth/auth')
 //
 router.post('/users',async (req, res) => {
+  //done
   const userone =await userModel.find({"email":req.body["email"]})
 if(userone.length>0)
 res.send({"message":"Email Is Already Exists"})
@@ -23,7 +24,7 @@ res.send({"message":"Email Is Already Exists"})
 )
 //
 router.get('/getUsers', auth,async(req, res) => {
-
+//done 
 try {
   const data =await userModel.find({})
   res.status(200).send(data)
@@ -33,7 +34,8 @@ try {
 
 })
 //
-router.get('/users/me', auth,async(req, res) => {
+router.get('/users/me', auth,async(req, res) => {//profile
+  //done
   try {
 res.send(req.user)
   } catch (error) {
@@ -41,15 +43,6 @@ res.send(req.user)
   }
  
 })
-//
-/*{
-  "_id": "603ea4a1490e5d00157beeac",
-  "name": "Ahmed salama",
-  "email": "ahmeds@gmail.com",
-  "password": "$2a$08$NyQ11NQsc8qRVMfyw70gXe3k.fo.fZRJlS0N8lEx5DZe9DqtyfqpO",
-  "age": 27,
-  "__v": 0
-},*/
 router.patch("/users",auth,async (req,res)=>{
 const allowedUpdates = ['name', 'email', 'password', 'age']
   var updates = Object.keys(req.body)
@@ -80,7 +73,7 @@ if (!isValidOperation) {
 })
 
  router.delete("/user",auth,async(req,res)=>{
- 
+ //done
 try {
 
 /*  const item=await userModel.deleteOne({_id:req.body["id"]}) 
