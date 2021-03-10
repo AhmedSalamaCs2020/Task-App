@@ -1,14 +1,13 @@
 const taskModel=require('../src/models/task_model')
-
+const auth=require('../src/auth/auth')
 const express=require('express')
 
 const router=express.Router()
 
-router.post("/tasks",async(req, res)=>{
+router.post("/tasks",auth,async(req, res)=>{
 
    try {
-      const response =taskModel(req.body)
-      console.log(req.body);
+      const response =taskModel({...req.body,"owner":req.user._id})
       const data= await response.save() // await == then
       res.status(201).send(data)
    } catch (error) {
