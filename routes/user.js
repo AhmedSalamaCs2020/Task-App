@@ -33,14 +33,9 @@ try {
 
 })
 //
-router.get('/users', auth,async(req, res) => {
-
-  const passedID = req.body
+router.get('/users/me', auth,async(req, res) => {
   try {
-const user= await userModel.findById({_id:passedID["id"]})
-  if(!user)
-   return res.status(404).send({"Message":"Invalid User ID"})
-   res.status(200).send(user)
+res.send(req.user)
   } catch (error) {
     res.status(500).send({"Message":"Invalid User ID"})
   }
@@ -84,16 +79,19 @@ if (!isValidOperation) {
 
 })
 
-router.delete("/user",auth,async(req,res)=>{
-
+ router.delete("/user",auth,async(req,res)=>{
+ 
 try {
 
-  const item=await userModel.deleteOne({_id:req.body["id"]}) 
+/*  const item=await userModel.deleteOne({_id:req.body["id"]}) 
   if(item["deletedCount"]==1)
   res.status(200).send({"message":"Item Deleted"})
   else{
     res.status(200).send({"message":"Item Already Deleted"})
-  }
+  }*/
+
+ await req.user.remove()
+ res.send(req.user)
 
 } catch (error) {
   res.send({"message":"error request"})
