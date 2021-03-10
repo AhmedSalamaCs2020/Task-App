@@ -71,8 +71,8 @@ if (!isValidOperation) {
   }
 
 })
-
- router.delete("/user",auth,async(req,res)=>{
+// delete using token also
+ router.delete("/user/me",auth,async(req,res)=>{
  //done
 try {
 
