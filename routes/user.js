@@ -32,7 +32,7 @@ try {
   res.status(400).send(error)
 }
 
-})
+}) 
 //
 router.get('/users/me', auth,async(req, res) => {//profile
   //done

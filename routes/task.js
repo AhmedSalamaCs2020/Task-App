@@ -16,10 +16,10 @@ router.post("/tasks",auth,async(req, res)=>{
 
 })
 //
-router.get("/getTasks",async(req,res)=>{
+router.get("/tasks",auth,async(req,res)=>{
 
    try {
-  const tasks  = await taskModel.find({})
+  const tasks  = await taskModel.find({"owner":req.user._id})
   res.status(200).send(tasks)
    } catch (error) {
       res.status(500).send(error)
@@ -27,11 +27,10 @@ router.get("/getTasks",async(req,res)=>{
 
 })
 //
-router.get("/getTask",async(req,res)=>{
-
-   const data=req.body;
+router.get('/tasks/:id',auth,async(req,res)=>{
+    const _id=req.params.id
    try {
-      const task= await taskModel.findById({_id:data["id"]})
+      const task= await taskModel.findOne({_id,"owner":req.user._id})
      if(!task)
      return  res.status(404).send({"Message":"Invalid Task ID"})
      res.status(200).send(task) 
@@ -41,22 +40,23 @@ router.get("/getTask",async(req,res)=>{
 
 })
 //
-router.patch('/task',async(req,res)=>{
+router.patch('/tasks/:id',auth,async(req,res)=>{
    const allowedUpdates=["completed","description"]
    var updates=Object.keys(req.body)
 
-   updates = updates.filter((item)=> {
+  /* updates = updates.filter((item)=> {
       return item !== "id"
-  })
+  })*/
   //remove id from update 
    const isValidOperation = updates.every((update) =>
    allowedUpdates.includes(update)
    )
+   console.log(isValidOperation);
    if(!isValidOperation)
       return res.status(400).send({ error: 'Invalid updates!' })
    
     try {
-      const task= await taskModel.findById(req.body["id"]);
+      const task= await taskModel.findOne({_id:req.params.id,"owner":req.user._id});
       if(!task)
       return res.status(404).send({ error: 'Invalid Task!' })
      updates.forEach((item)=>{task[item]=req.body[item]})
@@ -68,10 +68,10 @@ router.patch('/task',async(req,res)=>{
 
 })
 //
-router.delete("/task",async(req,res)=>{
+router.delete("/tasks/:id",auth,async(req,res)=>{
 
    try {
-     const item=await taskModel.deleteOne({_id:req.body["id"]}) 
+     const item=await taskModel.deleteOne({_id:req.params.id,"owner":req.user._id}) 
      if(item["deletedCount"]==1)
      res.status(200).send({"message":"Item Deleted"})
      else{

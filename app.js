@@ -21,3 +21,18 @@ app.use(userRoute)
 app.listen(port)
 //"nodemon -e * app.js"
 //https://guarded-chamber-64457.herokuapp.com/
+
+//const Task = require('./src/models/task_model')
+//const User = require('./src/models/user_model')
+
+//const main = async () => {
+   /* const task = await Task.findById('604a32c4005d9a0e8c129139')
+     await task.populate('owner').execPopulate()
+     console.log(task.owner)*/
+
+   // const user = await User.findById('604a323c005d9a0e8c129137')
+  //  await user.populate('tasks').execPopulate()
+ //   console.log(user.tasks)
+//}
+
+//main()

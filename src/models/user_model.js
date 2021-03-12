@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 var validator = require("validator");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-
+const Task=require('./task_model')
 const schema=mongoose.Schema({
   name:{
       type:String,
@@ -42,6 +42,14 @@ const schema=mongoose.Schema({
   }
 
 })
+//
+schema.virtual('tasks',{//name of virtual relation
+  ref:'Tasks',//table name
+  localField:"_id",//pk
+  foreignField: 'owner'//fk
+})
+
+//
 schema.statics.findByCredentials=async(email,password)=>{
 const user= await model.findOne({email:email})
 //console.log(user);
@@ -75,6 +83,12 @@ schema.pre('save',async function(next){//used in Create User and update
    user.password =await bcrypt.hash(user.password,8)
   }
 
+})
+//delete user's tasks when user deleted
+schema.pre('remove',async function(next){
+  const user=this
+  await Task.deleteMany({'owner':user._id})
+  next()
 })
 
 const model=mongoose.model('Users',schema)
