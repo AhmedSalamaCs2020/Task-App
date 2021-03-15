@@ -41,9 +41,6 @@ const schema=mongoose.Schema({
     }
   }
 
-},
-{
-  timestamps:true  
 })
 //
 schema.virtual('tasks',{//name of virtual relation
