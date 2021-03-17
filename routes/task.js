@@ -1,7 +1,6 @@
 const taskModel=require('../src/models/task_model')
 const auth=require('../src/auth/auth')
 const express=require('express')
-const { parse } = require('node:path')
 
 const router=express.Router()
 
@@ -28,7 +27,7 @@ router.get("/tasks",auth,async(req,res)=>{
      }
      console.log(match);
    try {
-  const tasks  = await taskModel.find(match,{ limit:1})
+  const tasks  = await taskModel.find(match).limit(req.query.limit)
   res.status(200).send(tasks) 
    } catch (error) {
       res.status(500).send(error)
