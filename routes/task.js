@@ -34,7 +34,7 @@ router.get("/tasks",auth,async(req,res)=>{
     limit:parseInt(req.query.limit),
     skip:parseInt(req.query.skip) 
   }}).execPopulate()
-  res.status(200).send(tasks) 
+  res.status(200).send(req.user.tasks) 
    } catch (error) {
       res.status(500).send(error)
    }
