@@ -5,10 +5,10 @@ const express=require('express')
 const router=express.Router()
 
 router.post("/tasks",auth,async(req, res)=>{
-
+ 
    try {
       const response =taskModel({...req.body,"owner":req.user._id})
-      const data= await response.save() // await == then
+      const data= await response.save()
       res.status(201).send(data)
    } catch (error) {
       res.status(400).send(error)
@@ -17,10 +17,15 @@ router.post("/tasks",auth,async(req, res)=>{
 })
 //
 router.get("/tasks",auth,async(req,res)=>{
-
+   const match = {"owner":req.user._id}
+   //using query String 
+  if (req.query.completed) {
+      match.completed = req.query.completed === 'true'
+     }
+     console.log(match);
    try {
-  const tasks  = await taskModel.find({"owner":req.user._id})
-  res.status(200).send(tasks)
+  const tasks  = await taskModel.find(match)
+  res.status(200).send(tasks) 
    } catch (error) {
       res.status(500).send(error)
    }

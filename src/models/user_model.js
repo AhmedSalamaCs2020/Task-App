@@ -46,11 +46,11 @@ const schema=mongoose.Schema({
   timestamps:true  
 })
 //
-schema.virtual('tasks',{//name of virtual relation
+/*schema.virtual('tasks',{//name of virtual relation
   ref:'Tasks',//table name
   localField:"_id",//pk
   foreignField: 'owner'//fk
-})
+})*/
 
 //
 schema.statics.findByCredentials=async(email,password)=>{
