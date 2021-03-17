@@ -25,7 +25,6 @@ router.get("/tasks",auth,async(req,res)=>{
      else if(req.query.completed&&req.query.completed=="false"){
       match.completed=req.query.completed
      }
-     console.log(match);
    try {
   //const tasks  = await taskModel.find(match).limit(parseInt(req.query.limit))
   await req.user.populate({path:"tasks"
