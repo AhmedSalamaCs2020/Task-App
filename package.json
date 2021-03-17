@@ -17,10 +17,12 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.31"
+    "@types/node": "^14.14.31",
+    "env-cmd": "^8.0.2"
   },
   "scripts": {
     "start": "Node app.js",
+    "dev": "env-cmd ./config/dev.env nodemon app.js",
     "stop-win": "Taskkill /IM node.exe /F"
   },
   "author": "",

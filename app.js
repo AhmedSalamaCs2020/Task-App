@@ -1,7 +1,7 @@
 //tools
 const express=require('express')
 const app=express()
-const port=process.env.PORT || 3000
+const port=process.env.PORT 
 const taskRoute=require('./routes/task')
 
 const userRoute=require('./routes/user')
@@ -18,7 +18,9 @@ app.use(taskRoute)
 app.use(userRoute)
 
 //
-app.listen(port)
+app.listen(port,()=>{
+  console.log("server is up on port"+port)
+})
 //"nodemon -e * app.js"
 //https://guarded-chamber-64457.herokuapp.com/
 

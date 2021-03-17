@@ -3,7 +3,7 @@ const user =require('../models/user_model')
 const auth=async (req,res,next)=>{
 try {
     const token=req.header('token')
-   const isCorrect= jwt.verify(token,"Ahmed Salama")
+   const isCorrect= jwt.verify(token,process.env.JWT)
  // console.log(token);
  // console.log(isCorrect);
   //console.log(isCorrect._id);
