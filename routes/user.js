@@ -6,7 +6,7 @@ const express = require('express')
 const router = express.Router()
 const auth=require('../src/auth/auth')
 //
- const {sendWelcomeEmail,sendCancelationEmail}=require('../src/emails/accounts')
+ //const {sendWelcomeEmail,sendCancelationEmail}=require('../src/emails/accounts')
 router.post('/users',async (req, res) => {
   //done
   const userone =await userModel.find({"email":req.body["email"]})
@@ -15,7 +15,7 @@ res.send({"message":"Email Is Already Exists"})
   const data = userModel(req.body)
   try {
     await data.save()
-    sendWelcomeEmail(email,name)
+    //sendWelcomeEmail(email,name)
   const token= await data.generateAuthToken()// here we generate token by id of user
     
     res.status(201).send({token,data})
@@ -88,7 +88,7 @@ try {
   }*/
 
  await req.user.remove()
- sendCancelationEmail(email,name)
+ //sendCancelationEmail(email,name)
  res.send(req.user)
 
 } catch (error) {
