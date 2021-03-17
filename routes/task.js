@@ -19,8 +19,11 @@ router.post("/tasks",auth,async(req, res)=>{
 router.get("/tasks",auth,async(req,res)=>{
    const match = {"owner":req.user._id}
    //using query String 
-  if (req.query.completed) {
-      match.completed = req.query.completed === 'true'
+  if (req.query.completed&&req.query.completed=="true") {
+      match.completed=req.query.completed
+     }
+     else if(req.query.completed&&req.query.completed=="false"){
+      match.completed=req.query.completed
      }
      console.log(match);
    try {
