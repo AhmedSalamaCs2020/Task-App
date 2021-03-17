@@ -27,7 +27,7 @@ router.get("/tasks",auth,async(req,res)=>{
      }
      console.log(match);
    try {
-  const tasks  = await taskModel.find(match).limit(req.query.limit)
+  const tasks  = await taskModel.find(match).limit(parseInt(req.query.limit))
   res.status(200).send(tasks) 
    } catch (error) {
       res.status(500).send(error)
