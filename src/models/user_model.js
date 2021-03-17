@@ -66,7 +66,7 @@ return user
 
 schema.methods.generateAuthToken= async function () {
   const user=this
-  const token=jwt.sign({ _id: user._id},"Ahmed Salama")
+  const token=jwt.sign({ _id: user._id},process.env.JWT)
 
   return token
 }
