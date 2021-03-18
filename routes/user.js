@@ -112,7 +112,13 @@ router.post('/login',async function (req,res){
 
 })
 const upload = multer({
-  dest: 'avatars'
+  dest: 'avatars',
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(doc|docx)$/)) {
+    return cb(new Error('Please upload a Word document'))
+    }
+    cb(undefined, true)
+    }
  })
  router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
   res.send()
