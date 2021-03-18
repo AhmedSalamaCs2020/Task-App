@@ -120,6 +120,7 @@ const upload = multer({
     cb(undefined, true)
     }
  })
+ 
  outer.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
   res.send()
  }, (error, req, res, next) => {
