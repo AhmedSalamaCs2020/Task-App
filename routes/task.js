@@ -24,8 +24,11 @@ router.get("/tasks",auth,async(req,res)=>{
       match.completed=req.query.completed
      }
 //
-     if(req.query.sort&&(req.query.sort=="desc"||req.query.sort=="asc")){
-      sort.createdAt=req.query.sort
+     if(req.query.sort&&req.query.sort=="desc"){
+      sort.createdAt=-1
+     }
+     else if(req.query.sort&&req.query.sort=="asc"){
+      sort.createdAt=1
      }
     
       
