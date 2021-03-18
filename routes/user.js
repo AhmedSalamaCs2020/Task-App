@@ -2,7 +2,7 @@ const userModel = require('../src/models/user_model');
 const email = 'as6184231@gmail.com';
 const name = 'Salama';
 const express = require('express')
- 
+const multer = require('multer')
 const router = express.Router()
 const auth=require('../src/auth/auth')
 //
@@ -111,5 +111,12 @@ router.post('/login',async function (req,res){
 
 
 })
+const upload = multer({
+  dest: 'avatars'
+ })
+ router.post('/users/me/avatar', upload.single('avatar'), (req, res) => {
+  res.send()
+ })
+
 
 module.exports = router
