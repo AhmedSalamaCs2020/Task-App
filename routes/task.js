@@ -18,13 +18,17 @@ router.post("/tasks",auth,async(req, res)=>{
 //
 router.get("/tasks",auth,async(req,res)=>{
    const match = {"owner":req.user._id}
+   const sort = {}
    //using query String 
-  if (req.query.completed&&req.query.completed=="true") {
+  if (req.query.completed&&(req.query.completed=="true"||req.query.completed=="false")) {
       match.completed=req.query.completed
      }
-     else if(req.query.completed&&req.query.completed=="false"){
-      match.completed=req.query.completed
+//
+     if(req.query.sort&&(req.query.sort=="desc"||req.query.sort=="asc")){
+      sort.createdAt=req.query.sort
      }
+    
+      
    try {
   //const tasks  = await taskModel.find(match).limit(parseInt(req.query.limit))
   await req.user.populate({path:"tasks"
@@ -32,9 +36,7 @@ router.get("/tasks",auth,async(req,res)=>{
   options:{
     limit:parseInt(req.query.limit),
     skip:parseInt(req.query.skip),
-    sort:{
-       createdAt:-1
-    } 
+    sort:sort
   }}).execPopulate()
   res.status(200).send(req.user.tasks) 
    } catch (error) {
