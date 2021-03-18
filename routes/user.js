@@ -120,7 +120,7 @@ const upload = multer({
     cb(undefined, true)
     }
  })
- router.post('/users/me/avatar', upload.single('avatar'), async(req, res) => {
+ router.post('/users/me/avatar',auth, upload.single('avatar'), async(req, res) => {
   req.user.avatar = req.file.buffer
   await req.user.save()
  res.send()
