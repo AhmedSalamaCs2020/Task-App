@@ -4,6 +4,9 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const Task=require('./task_model')
 const schema=mongoose.Schema({
+  avatar: {
+    type: Buffer
+    },
   name:{
       type:String,
       required: true,
