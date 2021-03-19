@@ -112,20 +112,27 @@ router.post('/login',async function (req,res){
 
 })
 const upload = multer({
-  dest: 'avatars',
+//  dest: 'avatars',
   fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(doc|docx)$/)) {
-    return cb(new Error('Please upload a Word document'))
+    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
+    return cb(new Error('Please upload a image'))
     }
     cb(undefined, true)
     }
  })
+ //
  router.post('/users/me/avatar',auth, upload.single('avatar'), async(req, res) => {
   req.user.avatar = req.file.buffer
   await req.user.save()
  res.send()
 }, (error, req, res, next) => {
  res.status(400).send({ error: error.message })
+})
+router.delete('/users/me/avatar',auth,async(req,res)=>{
+req.user.avatar=undefined
+await req.user.save()
+res.status(200).send()
+
 })
 
 
