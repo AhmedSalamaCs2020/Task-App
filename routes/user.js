@@ -5,7 +5,7 @@ const express = require('express')
 const multer = require('multer')
 const router = express.Router()
 const auth=require('../src/auth/auth');
-const { Error } = require('mongoose');
+const sharp = require('sharp')
 //
  //const {sendWelcomeEmail,sendCancelationEmail}=require('../src/emails/accounts')
 router.post('/users',async (req, res) => {
@@ -123,25 +123,30 @@ const upload = multer({
  })
  //
  router.post('/users/me/avatar',auth, upload.single('avatar'), async(req, res) => {
-  req.user.avatar = req.file.buffer
+  const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250
+
+  }).png().toBuffer()
+  req.user.avatar =buffer
   await req.user.save()
  res.send()
 }, (error, req, res, next) => {
  res.status(400).send({ error: error.message })
 })
+//
 router.delete('/users/me/avatar',auth,async(req,res)=>{
 req.user.avatar=undefined
 await req.user.save()
 res.status(200).send()
 
 })
+//
 router.get('/users/me/avatar',auth,async(req,res)=>{
   try {
     const user =userModel.findById(req.user._id)
     if(!user||!user.avatar){
    throw new Error()
     }
-    res.set('Content-Type', 'image/jpg')
+    res.set('Content-Type', 'image/png')
 
     res.sendStatus(200).send(user.avatar)
   } catch (error) {
