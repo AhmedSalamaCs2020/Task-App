@@ -4,7 +4,8 @@ const name = 'Salama';
 const express = require('express')
 const multer = require('multer')
 const router = express.Router()
-const auth=require('../src/auth/auth')
+const auth=require('../src/auth/auth');
+const { Error } = require('mongoose');
 //
  //const {sendWelcomeEmail,sendCancelationEmail}=require('../src/emails/accounts')
 router.post('/users',async (req, res) => {
@@ -133,6 +134,19 @@ req.user.avatar=undefined
 await req.user.save()
 res.status(200).send()
 
+})
+router.get('/users/me/avatar',auth,async(req,res)=>{
+  try {
+    const user =userModel.findById(req.user._id)
+    if(!user||!user.avatar){
+   throw new Error()
+    }
+    res.set('Content-Type', 'image/jpg')
+
+    res.sendStatus(200).send(user.avatar)
+  } catch (error) {
+    res.sendStatus(400).send()
+  }
 })
 
 
