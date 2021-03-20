@@ -29,5 +29,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedSalamaCs2020/Task-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AhmedSalamaCs2020/Task-App/issues"
+  },
+  "homepage": "https://github.com/AhmedSalamaCs2020/Task-App#readme",
   "description": ""
 }
