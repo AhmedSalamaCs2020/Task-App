@@ -126,7 +126,7 @@ const upload = multer({
  /* const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250
 
   }).png().toBuffer()*/
-  req.user.avatar =req.file.buffe
+  req.user.avatar =req.file.buffer
   await req.user.save()
  res.send()
 }, (error, req, res, next) => {
