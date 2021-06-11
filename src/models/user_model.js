@@ -35,11 +35,6 @@ const schema=mongoose.Schema({
   type:{
     type:String,
     trim:true,
-    validate(value){
-      if(value.toLowerCase().length()==0){
-        throw new Error('Type is Invalid')
-      }
-    }
   }
 
 },
