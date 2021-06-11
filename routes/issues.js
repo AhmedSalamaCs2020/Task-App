@@ -8,7 +8,7 @@ router.post("/issue",auth,async(req, res)=>{
     try {
        const response =issuesModel({...req.body,"owner":req.user._id})
        const data= await response.save()
-       res.status(201).send(response)
+       res.status(200).send(data)
     } catch (error) {
        res.status(400).send(error)
     }
