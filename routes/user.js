@@ -98,9 +98,9 @@ try {
 
 })
 
-///
+///////////////////Login/////////////////////////////////
 router.post('/login',async function (req,res){
-  const email=req.body["email"]
+  const email=req.body["phone"]
   const passwords=req.body["password"]
   try {
  var user=await userModel.findByCredentials(email,passwords);//beacuase static method 
@@ -112,7 +112,7 @@ router.post('/login',async function (req,res){
 
 
 })
-const upload = multer({
+/*const upload = multer({
 //  dest: 'avatars',
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
@@ -120,26 +120,24 @@ const upload = multer({
     }
     cb(undefined, true)
     }
- })
+ })*/
  //
- router.post('/users/me/avatar',auth, upload.single('avatar'), async(req, res) => {
- /* const buffer = await sharp(req.file.buffer).resize({ width: 250, height: 250
-  }).png().toBuffer()*/
+ /*router.post('/users/me/avatar',auth, upload.single('avatar'), async(req, res) => {
   req.user.avatar =req.file.buffer
   await req.user.save()
  res.send()
 }, (error, req, res, next) => {
  res.status(400).send({ error: error.message })
-})
+})*/
 //
-router.delete('/users/me/avatar',auth,async(req,res)=>{
+/*router.delete('/users/me/avatar',auth,async(req,res)=>{
 req.user.avatar=undefined
 await req.user.save()
 res.status(200).send()
 
-})
+})*/
 //
-router.get('/users/me/avatar',auth,async(req,res)=>{
+/*router.get('/users/me/avatar',auth,async(req,res)=>{
   try {
     const user =userModel.findById(req.user._id)
     if(!user||!user.avatar){
@@ -151,7 +149,7 @@ router.get('/users/me/avatar',auth,async(req,res)=>{
   } catch (error) {
     res.sendStatus(400).send()
   }
-})
+})*/
 
 
 module.exports = router

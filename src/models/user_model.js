@@ -3,16 +3,14 @@ var validator = require("validator");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 const Task=require('./task_model')
+//
 const schema=mongoose.Schema({
-  avatar: {
-    type: Buffer
-    },
   name:{
       type:String,
       required: true,
       trim:true,
   },
-  email:{
+  phone:{
     type:String,
     unique: true,
     required: true,
@@ -20,17 +18,8 @@ const schema=mongoose.Schema({
     lowercase:true,
     validate(value){
      if( !validator.isEmail(value))
-     throw new Error('Email is invalid')
+     throw new Error('Password is Invalid')
     }
-  },
-  age:{
-      type:Number,
-      trim:true,
-      validate(value){
-        if(value<0){
-          throw new Error('Age must be a positive number')
-        }
-      }
   },
   password:{
     type:String,
@@ -40,6 +29,15 @@ const schema=mongoose.Schema({
     validate(value){
       if(value.toLowerCase().includes("password")){
         throw new Error('Password cannot contain "password"')
+      }
+    }
+  },
+  type:{
+    type:String,
+    trim:true,
+    validate(value){
+      if(value.toLowerCase().length()==0){
+        throw new Error('Type is Invalid')
       }
     }
   }
