@@ -5,14 +5,12 @@ const express = require('express')
 const multer = require('multer')
 const router = express.Router()
 const auth=require('../src/auth/auth');
-//const sharp = require('sharp')
-//
- //const {sendWelcomeEmail,sendCancelationEmail}=require('../src/emails/accounts')
+
 router.post('/users',async (req, res) => {
   //done
-  const userone =await userModel.find({"email":req.body["email"]})
+  const userone =await userModel.find({"phone":req.body["phone"]})
 if(userone.length>0)
-res.send({"message":"Email Is Already Exists"})
+res.send({"message":"false"})
   const data = userModel(req.body)
   try {
     await data.save()
