@@ -105,7 +105,7 @@ router.post('/login',async function (req,res){
  const token=await user.generateAuthToken();// not static 
     res.send({"user":user.getPublicProfile(),token});// not static 
   } catch (error) {
-    res.send({"Message":"Invalid User"})
+    res.send({null})
   }
 
 
