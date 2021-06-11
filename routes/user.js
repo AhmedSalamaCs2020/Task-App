@@ -1,8 +1,5 @@
 const userModel = require('../src/models/user_model');
-const email = 'as6184231@gmail.com';
-const name = 'Salama';
 const express = require('express')
-const multer = require('multer')
 const router = express.Router()
 const auth=require('../src/auth/auth');
 

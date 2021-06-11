@@ -5,6 +5,7 @@ const port=process.env.PORT
 const taskRoute=require('./routes/task')
 
 const userRoute=require('./routes/user')
+const issueRoute=require('./routes/issues')
 
 //connect database mongose db 
 require('./src/database/databaseConnection')
@@ -16,7 +17,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(taskRoute)
 app.use(userRoute)
-
+app.use(issueRoute)
 //
 app.listen(port,()=>{
   console.log("server is up on port"+port)
