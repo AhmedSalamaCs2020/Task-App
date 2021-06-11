@@ -46,8 +46,8 @@ schema.virtual('tasks',{//name of virtual relation
 })
 
 //
-schema.statics.findByCredentials=async(email,password)=>{
-const user= await model.findOne({email:email})
+schema.statics.findByCredentials=async(phone,password)=>{
+const user= await model.findOne({phone:phone})
 //console.log(user);
  if(!user)
  throw new Error('Unable to login')
