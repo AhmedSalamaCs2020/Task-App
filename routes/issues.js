@@ -25,3 +25,4 @@ router.get('/issue', auth,async(req, res) => {
     }
     
     }) 
+module.exports=router

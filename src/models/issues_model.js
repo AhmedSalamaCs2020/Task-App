@@ -11,7 +11,6 @@ const issuesSchema=mongoose.Schema({
         required:true ,
         ref:"Users"//reference to user table
     }
-
 },
 {
     timestamps:true
