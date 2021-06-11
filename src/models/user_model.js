@@ -16,10 +16,7 @@ const schema=mongoose.Schema({
     required: true,
     trim:true,
     lowercase:true,
-    validate(value){
-     if( !validator.isEmail(value))
-     throw new Error('Password is Invalid')
-    }
+  
   },
   password:{
     type:String,

@@ -100,10 +100,10 @@ try {
 
 ///////////////////Login/////////////////////////////////
 router.post('/login',async function (req,res){
-  const email=req.body["phone"]
+  const phone=req.body["phone"]
   const passwords=req.body["password"]
   try {
- var user=await userModel.findByCredentials(email,passwords);//beacuase static method 
+ var user=await userModel.findByCredentials(phone,passwords);//beacuase static method 
  const token=await user.generateAuthToken();// not static 
     res.send({"user":user.getPublicProfile(),token});// not static 
   } catch (error) {
