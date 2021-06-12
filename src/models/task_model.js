@@ -24,6 +24,11 @@ const taskSchema=mongoose.Schema({
         type:String,
         trim:true,
         required:true
+    },
+    phone:{
+        type:String,
+        trim:true,
+        required:true
     }
 },
 {
