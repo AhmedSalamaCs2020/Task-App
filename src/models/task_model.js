@@ -14,8 +14,17 @@ const taskSchema=mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         required:true ,
         ref:"Users"//reference to user table
+    },
+    deleveryName:{
+        type:String,
+        trim:true,
+        required:true
+    },
+    marketID:{
+        type:String,
+        trim:true,
+        required:true
     }
-
 },
 {
     timestamps:true
