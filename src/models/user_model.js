@@ -39,11 +39,11 @@ const schema=mongoose.Schema({
     trim:true,
   },
   lat:{
-    type: Double,
+    type: String,
     trim:true,
   },
   long:{
-    type:Double,
+    type:String,
     trim:true,
   }
 },

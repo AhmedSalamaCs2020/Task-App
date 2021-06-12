@@ -86,44 +86,14 @@ router.post('/login',async function (req,res){
 
 
 })
-/*const upload = multer({
-//  dest: 'avatars',
-  fileFilter(req, file, cb) {
-    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
-    return cb(new Error('Please upload a image'))
-    }
-    cb(undefined, true)
-    }
- })*/
- //
- /*router.post('/users/me/avatar',auth, upload.single('avatar'), async(req, res) => {
-  req.user.avatar =req.file.buffer
-  await req.user.save()
- res.send()
-}, (error, req, res, next) => {
- res.status(400).send({ error: error.message })
-})*/
-//
-/*router.delete('/users/me/avatar',auth,async(req,res)=>{
-req.user.avatar=undefined
-await req.user.save()
-res.status(200).send()
 
-})*/
 //
-/*router.get('/users/me/avatar',auth,async(req,res)=>{
-  try {
-    const user =userModel.findById(req.user._id)
-    if(!user||!user.avatar){
-   throw new Error()
-    }
-    res.set('Content-Type', 'image/png')
+router.put("/locationUser",auth,async (req,res)=>{
+  const data =await userModel.findByIdAndUpdate(req.body["id"],{lat: req.body["lat"],long: req.body["long"]},{ new: true })
+  res.send(data)
+})
+//
 
-    res.sendStatus(200).send(user.avatar)
-  } catch (error) {
-    res.sendStatus(400).send()
-  }
-})*/
 
 
 module.exports = router
