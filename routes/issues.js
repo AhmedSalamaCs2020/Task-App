@@ -19,10 +19,13 @@ router.post("/issue",auth,async(req, res)=>{
 router.get('/issue', auth,async(req, res) => {
     //done 
     try {
-   const user= await userModel.find()
-   await user.populate('Issues').execPopulate()
-   res.status(201).send(user.issues)
-   user
+      issuesModel.find({}).populate("Users").exec((err, result) => {
+         if(err){
+             return  res.json({error :  err})
+         }
+         res.json({result :  result})
+         });
+   
     } catch (error) {
       res.status(400).send(error)
     }
