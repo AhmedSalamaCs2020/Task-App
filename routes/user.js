@@ -22,7 +22,7 @@ res.send({"message":"false"})
 }
 )
 //
-router.get('/getUsers', auth,async(req, res) => {
+router.post('/getUsers', auth,async(req, res) => {
 //done 
 try {
   const data =await userModel.find({"type":req.body["type"]})
