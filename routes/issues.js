@@ -19,14 +19,10 @@ router.post("/issue",auth,async(req, res)=>{
 router.get('/issue', auth,async(req, res) => {
     //done 
     try {
-      issuesModel.find()
-      .populate('issues')
-   
-      .exec(function (err, results) {
-           // callback
-           res.status(200).send(results)
-      });
-     
+   const user= await userModel.find()
+   await user.populate('Issues').execPopulate()
+   res.status(201).send(user.issues)
+   user
     } catch (error) {
       res.status(400).send(error)
     }
