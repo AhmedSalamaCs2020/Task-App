@@ -2,7 +2,8 @@ const mongoose=require('mongoose')
 var validator = require("validator");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-const Task=require('./task_model')
+const Task=require('./task_model');
+const { Double } = require('mongodb');
 //
 const schema=mongoose.Schema({
   name:{
@@ -35,6 +36,14 @@ const schema=mongoose.Schema({
   },
   activated:{
     type:Boolean,
+    trim:true,
+  },
+  lat:{
+    type: Double,
+    trim:true,
+  },
+  long:{
+    type:Double,
     trim:true,
   }
 },
