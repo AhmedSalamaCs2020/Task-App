@@ -6,8 +6,10 @@ const auth=require('../src/auth/auth');
 router.post('/users',async (req, res) => {
   //done
   const userone =await userModel.find({"phone":req.body["phone"]})
-if(userone.length>0)
+if(userone.length>0){
 res.send({"message":"false"})
+return
+}
   const data = userModel(req.body)
   try {
     await data.save()
