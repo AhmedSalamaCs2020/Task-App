@@ -34,7 +34,7 @@ const schema=mongoose.Schema({
     trim:true,
   },
   activated:{
-    type:bool,
+    type:Boolean,
     trim:true,
   }
 },
