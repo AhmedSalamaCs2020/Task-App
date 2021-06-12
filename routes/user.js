@@ -25,7 +25,7 @@ res.send({"message":"false"})
 router.get('/getUsers', auth,async(req, res) => {
 //done 
 try {
-  const data =await userModel.find({})
+  const data =await userModel.find({type:"market"})
   res.status(200).send(data)
 } catch (error) {
   res.status(400).send(error)
