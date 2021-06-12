@@ -21,7 +21,7 @@ router.get('/issue', auth,async(req, res) => {
     try {
       const data =await issuesModel.find({})
       const user =await userModel.find({'_id':req.user._id})
-      res.status(200).send(user)
+      res.status(200).send({user,data})
     } catch (error) {
       res.status(400).send(error)
     }
