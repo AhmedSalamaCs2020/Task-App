@@ -17,11 +17,17 @@ router.post("/issue",auth,async(req, res)=>{
  })
  //
 router.get('/issue', auth,async(req, res) => {
+   const match = {"owner":req.user._id}
     //done 
     try {
       const data =await issuesModel.find({})
-      const user =await userModel.findOne({'_id':req.user._id})
-      res.status(200).send({user,data})
+  
+
+      await req.user.populate({path:"issues"
+      ,match
+ }).execPopulate()
+      res.status(200).send(req.user.issues) 
+        //  
     } catch (error) {
       res.status(400).send(error)
     }

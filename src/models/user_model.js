@@ -44,7 +44,11 @@ schema.virtual('tasks',{//name of virtual relation
   localField:"_id",//pk
   foreignField: 'owner'//fk
 })
-
+schema.virtual('issues',{//name of virtual relation
+  ref:'Issues',//table name
+  localField:"_id",//pk
+  foreignField: 'owner'//fk
+})
 //
 schema.statics.findByCredentials=async(phone,password)=>{
 const user= await model.findOne({phone:phone})
