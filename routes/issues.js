@@ -19,8 +19,9 @@ router.post("/issue",auth,async(req, res)=>{
 router.get('/issue', auth,async(req, res) => {
     //done 
     try {
-      userModel.find()
+      issuesModel.find()
       .populate('issues')
+   
       .exec(function (err, results) {
            // callback
            res.status(200).send(results)
