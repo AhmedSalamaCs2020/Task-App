@@ -19,7 +19,7 @@ router.get('/issue', auth,async(req, res) => {
     //done 
     try {
       const data =await issuesModel.find({})
-      res.status(200).send(data)
+      res.status(200).send(data,req.user)
     } catch (error) {
       res.status(400).send(error)
     }
