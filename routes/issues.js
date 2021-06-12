@@ -1,5 +1,4 @@
 const issuesModel = require('../src/models/issues_model');
-const userModel = require('../src/models/user_model');
 const express = require('express')
 const router = express.Router()
 const auth=require('../src/auth/auth');
@@ -17,16 +16,10 @@ router.post("/issue",auth,async(req, res)=>{
  })
  //
 router.get('/issue', auth,async(req, res) => {
-
     //done 
     try {
-      userModel
-      .find()
-      .populate("issues") // key to populate
-      .then(user => {
-         res.json(user); 
-      });
-        //  
+      const data =await issuesModel.find({})
+      res.status(200).send(data)
     } catch (error) {
       res.status(400).send(error)
     }
