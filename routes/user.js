@@ -42,28 +42,12 @@ res.send(req.user)
   }
  
 })
+//
 router.patch("/users",auth,async (req,res)=>{
-const allowedUpdates = ['name', 'phone', 'password', 'type', 'activated']
-  var updates = Object.keys(req.body)
-
-const isValidOperation = updates.every((update) =>
-allowedUpdates.includes(update)
-)
-if (!isValidOperation) {
- return res.status(400).send({ error: 'Invalid updates!' })
-}
-
-  try {
-
-    allowedUpdates.forEach((element)=>req.user[element]=req.body[element])
-  await req.user.save()
-   res.send(req.user)
-
-  } catch (error) {
-    res.send({"Message":"error"})
-  }
-
+  const data =await userModel.findByIdAndUpdate(req.body["id"],{activated: req.body["activated"]})
+  res.send(data)
 })
+//
 // delete using token also
  router.delete("/user/me",auth,async(req,res)=>{
  //done
