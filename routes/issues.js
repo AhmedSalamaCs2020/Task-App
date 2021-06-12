@@ -19,12 +19,12 @@ router.get('/issue', auth,async(req, res) => {
     //done 
     try {
       issuesModel.find()
+      .populate('tasks')
       .populate('issues')
       .exec(function (err, results) {
            // callback
            res.status(200).send(results)
       });
-     // const data =await issuesModel.find({})
      
     } catch (error) {
       res.status(400).send(error)
