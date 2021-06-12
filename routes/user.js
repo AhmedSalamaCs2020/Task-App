@@ -44,8 +44,10 @@ res.send(req.user)
 })
 //
 router.patch("/users",auth,async (req,res)=>{
-  const data =await userModel.findByIdAndUpdate(req.body["id"],{activated: req.body["activated"]})
-  res.send(data)
+  await userModel.findByIdAndUpdate(req.body["id"],{activated: req.body["activated"]},function(err, model){
+    res.send(model)
+  })
+
 })
 //
 // delete using token also
