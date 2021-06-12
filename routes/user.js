@@ -43,7 +43,7 @@ res.send(req.user)
  
 })
 //
-router.patch("/users",auth,async (req,res)=>{
+router.put("/users",auth,async (req,res)=>{
   const data =await userModel.findByIdAndUpdate(req.body["id"],{activated: req.body["activated"]},{ new: true })
   res.send(data)
 })
