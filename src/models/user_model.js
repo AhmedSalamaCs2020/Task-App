@@ -32,8 +32,11 @@ const schema=mongoose.Schema({
   type:{
     type:String,
     trim:true,
+  },
+  activated:{
+    type:bool,
+    trim:true,
   }
-
 },
 {
   timestamps:true  
