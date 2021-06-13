@@ -30,7 +30,7 @@ router.post("/getTasks",auth,async(req,res)=>{
 router.post("/getTasksUser",auth,async(req,res)=>{
       
    try {
-  const tasks = await taskModel.find({"marketID":req.body['marketID']})
+  const tasks = await taskModel.find({"owner":req.body['owner']})
   
   res.status(200).send(tasks) 
    } catch (error) {
