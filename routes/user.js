@@ -50,7 +50,7 @@ router.put("/users",auth,async (req,res)=>{
   res.send(data)
 })
 //
-router.get('/market',auth,async(req,res)=>{
+router.post('/market',auth,async(req,res)=>{
   try {
      const task= await userModel.findOne({"_id":req.body["id"]})
     if(!task)
