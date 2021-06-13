@@ -15,7 +15,7 @@ router.post("/tasks",auth,async(req, res)=>{
 
 })
 //
-router.get("/tasks",auth,async(req,res)=>{
+router.post("/getTasks",auth,async(req,res)=>{
       
    try {
   const tasks  = await taskModel.find({"marketID":req.body['marketID']})
