@@ -27,6 +27,17 @@ router.post("/getTasks",auth,async(req,res)=>{
 
 })
 //
+router.post("/getTasksByUser",auth,async(req,res)=>{
+      
+   try {
+  const tasks = await taskModel.find({"owner":req.body['driverID']})
+  
+  res.status(200).send(tasks) 
+   } catch (error) {
+      res.status(500).send(error)
+   }
+
+})
 router.get('/tasks/:id',auth,async(req,res)=>{
     const _id=req.params.id
    try {
