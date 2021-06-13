@@ -40,7 +40,7 @@ router.post("/getTasksUser",auth,async(req,res)=>{
 })
 //
 router.put("/tasks",auth,async (req,res)=>{
-   const data =await userModel.findByIdAndUpdate(req.body["id"],{completed: req.body["completed"]},{ new: true })
+   const data =await taskModel.findByIdAndUpdate(req.body["id"],{completed: req.body["completed"]},{ new: true })
    res.send(data)
  })
 router.get('/tasks/:id',auth,async(req,res)=>{
