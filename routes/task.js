@@ -43,18 +43,8 @@ router.put("/tasks",auth,async (req,res)=>{
    const data =await taskModel.findByIdAndUpdate(req.body["id"],{completed: req.body["completed"]},{ new: true })
    res.send(data)
  })
-router.get('/tasks/:id',auth,async(req,res)=>{
-    const _id=req.params.id
-   try {
-      const task= await taskModel.findOne({_id,"owner":req.user._id})
-     if(!task)
-     return  res.status(404).send({"Message":"Invalid Task ID"})
-     res.status(200).send(task) 
-   } catch (error) {
-      res.status(500).send({"Message":"Invalid Task ID"})
-   }
+ //
 
-})
 //
 router.patch('/tasks/:id',auth,async(req,res)=>{
    const allowedUpdates=["completed","description"]

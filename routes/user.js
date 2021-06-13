@@ -50,6 +50,17 @@ router.put("/users",auth,async (req,res)=>{
   res.send(data)
 })
 //
+router.get('/market',auth,async(req,res)=>{
+  try {
+     const task= await userModel.findOne({"_id":req.body["id"]})
+    if(!task)
+    return  res.status(404).send({"Message":"Invalid market ID"})
+    res.status(200).send(task) 
+  } catch (error) {
+     res.status(500).send({"Message":"Invalid market ID"})
+  }
+
+})
 // delete using token also
  router.delete("/user/me",auth,async(req,res)=>{
  //done
