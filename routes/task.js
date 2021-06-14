@@ -44,6 +44,10 @@ router.put("/tasks",auth,async (req,res)=>{
    res.send(data)
  })
  //
+ router.put("/changeStatus",auth,async (req,res)=>{
+   const data =await taskModel.findByIdAndUpdate(req.body["id"],{completed: req.body["status"]},{ new: true })
+   res.send(data)
+ })
 
 //
 router.patch('/tasks/:id',auth,async(req,res)=>{
