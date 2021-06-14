@@ -16,7 +16,7 @@ return
     //sendWelcomeEmail(email,name)
   const token= await data.generateAuthToken()// here we generate token by id of user
     
-    res.status(201).send({token,data})
+    res.status(201).send({"message":"true"})
   } catch (error) {
     res.status(400).send(error)
   }
