@@ -44,6 +44,11 @@ router.put("/tasks",auth,async (req,res)=>{
    res.send(data)
  })
  //
+ router.put("/distanceTotal",auth,async (req,res)=>{
+   const data =await taskModel.findByIdAndUpdate(req.body["id"],{total: req.body["total"],distance:req.body['distance']},{ new: true })
+   res.send(data)
+ })
+//
  router.put("/changeStatus",auth,async (req,res)=>{
    const data =await taskModel.findByIdAndUpdate(req.body["id"],{status: req.body["status"]},{ new: true })
    res.send(data)
