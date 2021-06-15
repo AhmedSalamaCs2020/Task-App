@@ -42,6 +42,10 @@ const taskSchema=mongoose.Schema({
         type:String,
         default:0 
     },
+    done:{ 
+        type:Boolean,
+        default:false 
+    },
 },
 {
     timestamps:true
