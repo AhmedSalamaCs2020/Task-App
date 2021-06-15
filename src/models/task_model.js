@@ -34,7 +34,11 @@ const taskSchema=mongoose.Schema({
         type:String,
         trim:true,
         required:true
-    }
+    },
+    total:{ 
+        type:String,
+        default:0 
+    },
 },
 {
     timestamps:true
