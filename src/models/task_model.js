@@ -39,6 +39,10 @@ const taskSchema=mongoose.Schema({
         type:String,
         default:0 
     },
+    distance:{ 
+        type:String,
+        default:0 
+    },
 },
 {
     timestamps:true
