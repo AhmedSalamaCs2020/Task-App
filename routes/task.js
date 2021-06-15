@@ -39,6 +39,19 @@ router.post("/getTasksUser",auth,async(req,res)=>{
 
 })
 //
+router.post("/allTasks",auth,async(req,res)=>{
+      
+   try {
+  const tasks = await taskModel.find()
+  
+  res.status(200).send(tasks) 
+   } catch (error) {
+      res.status(500).send(error)
+   }
+
+})
+
+//
 router.post("/getDelievery",auth,async(req,res)=>{
       
    try {
