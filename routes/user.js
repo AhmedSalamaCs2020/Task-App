@@ -50,6 +50,10 @@ router.put("/users",auth,async (req,res)=>{
   res.send(data)
 })
 //
+router.put("/updateAssignedTask",auth,async (req,res)=>{
+  const data =await userModel.findByIdAndUpdate(req.body["id"],{assigned: req.body["assigned"]},{ new: true })
+  res.send(data)
+})
 router.post('/market',auth,async(req,res)=>{
   try {
      const task= await userModel.findOne({"_id":req.body["id"]})
