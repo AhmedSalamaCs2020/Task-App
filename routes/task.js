@@ -108,10 +108,10 @@ router.patch('/tasks/:id',auth,async(req,res)=>{
 
 })
 //
-router.delete("/tasks/:id",auth,async(req,res)=>{
+router.delete("/tasks",auth,async(req,res)=>{
 
    try {
-     const item=await taskModel.deleteOne({_id:req.params.id,"owner":req.user._id}) 
+     const item=await taskModel.deleteOne({_id:req.body['id'],"owner":req.body['owner']}) 
      if(item["deletedCount"]==1)
      res.status(200).send({"message":"Item Deleted"})
      else{
