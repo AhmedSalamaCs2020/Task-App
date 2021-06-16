@@ -45,7 +45,13 @@ const schema=mongoose.Schema({
   long:{
     type:String,
     trim:true,
-  }
+  },
+  assigned:{
+    type:Boolean,
+    trim:true,
+    default:false 
+  },
+  
 },
 {
   timestamps:true  
