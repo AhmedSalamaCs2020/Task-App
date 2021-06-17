@@ -67,7 +67,7 @@ router.post("/getDelievery",auth,async(req,res)=>{
 router.put("/getDelievery",auth,async(req,res)=>{
       
    try {
-  const tasks = await taskModel.findByIdAndUpdate(req.body['id'],{"done":req.body['done']})
+  const tasks = await taskModel.findByIdAndUpdate(req.body['id'],{"done":req.body['done']},{ new: true })
   
   res.status(200).send(tasks) 
    } catch (error) {
