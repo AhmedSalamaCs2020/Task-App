@@ -51,6 +51,11 @@ const schema=mongoose.Schema({
     trim:true,
     default:false 
   },
+    fcm:{
+    type:String,
+    trim:true,
+    default:0 
+  },
   
 },
 {
