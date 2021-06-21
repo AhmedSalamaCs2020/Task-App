@@ -55,7 +55,7 @@ router.put("/updateAssignedTask",auth,async (req,res)=>{
   res.send(data)
 })
 //
-router.put("/fcm",auth,async (req,res)=>{
+router.put("/fcm",async (req,res)=>{
   const data =await userModel.findByIdAndUpdate(req.body["id"],{fcm: req.body["fcm"]},{ new: true })
   res.send(data)
 })
