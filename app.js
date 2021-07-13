@@ -13,11 +13,11 @@ require('./src/database/databaseConnection')
 
 //middlewares
 var bodyParser = require('body-parser')
-app.use(bodyParser.json())
+/*app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(taskRoute)
 app.use(userRoute)
-app.use(issueRoute)
+app.use(issueRoute)*/
 //
 app.listen(port,()=>{
   console.log("server is up on port"+port)
