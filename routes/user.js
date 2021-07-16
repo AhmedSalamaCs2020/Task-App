@@ -35,6 +35,17 @@ try {
 
 }) 
 //
+router.delete('/deleteUser', auth,async(req, res) => {
+  //done 
+  try {
+    const data =await userModel.findByIdAndDelete(req.body["id"])
+    res.status(200).send(data)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+  
+  }) 
+//
 router.get('/users/me', auth,async(req, res) => {//profile
   //done
   try {
