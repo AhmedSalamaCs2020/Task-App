@@ -49,7 +49,7 @@ router.delete('/deleteUser', auth,async(req, res) => {
 router.delete('/deleteAllUser', auth,async(req, res) => {
   //done 
   try {
-    const data =await userModel.remove()
+    const data =await userModel.remove({type:req.body["type"]})
     res.status(200).send(data)
   } catch (error) {
     res.status(400).send(error)
