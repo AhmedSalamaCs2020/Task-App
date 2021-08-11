@@ -151,6 +151,17 @@ router.delete("/tasks",auth,async(req,res)=>{
    }
    
    })
+   //
+   router.delete('/deleteAllTasks', auth,async(req, res) => {
+      //done 
+      try {
+        const data =await taskModel.remove()
+        res.status(200).send(data)
+      } catch (error) {
+        res.status(400).send(error)
+      }
+      
+      }) 
 
 
 module.exports=router
