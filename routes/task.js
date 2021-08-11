@@ -135,5 +135,22 @@ router.delete("/tasks",auth,async(req,res)=>{
    }
    
    })
+ ///
+ router.delete("/specificTask",auth,async(req,res)=>{
+
+   try {
+     const item=await taskModel.deleteOne({_id:req.body['id']}) 
+     if(item["deletedCount"]==1)
+     res.status(200).send({"message":"Item Deleted"})
+     else{
+       res.status(200).send({"message":"Item Already Deleted"})
+     }
+   
+   } catch (error) {
+     res.send({"message":"error request"})
+   }
+   
+   })
+
 
 module.exports=router
