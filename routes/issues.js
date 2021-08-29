@@ -25,4 +25,17 @@ router.get('/issue', auth,async(req, res) => {
     }
     
     }) 
+   
+router.post('/hatoAflosEly3alko',async(req, res) => {
+   //done 
+   try {
+      if(req.body["flose"]==1)
+     res.status(200).send({"message":"okay"})
+     else
+     res.status(200).send({"message":"هاتوا الفلوس اللي عليكم "})
+   } catch (error) {
+     res.status(400).send(error)
+   }
+   
+   })  
 module.exports=router
